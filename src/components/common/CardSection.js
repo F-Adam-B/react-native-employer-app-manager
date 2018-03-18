@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 
 const CardSection = props => {
-	return <View style={styles.containerStyle}>{props.children}</View>;
+	// in the event additional props sent, takes array and overides with the second
+	return <View style={[styles.containerStyle, props.style]}>{props.children}</View>;
 };
 
 const styles = {
