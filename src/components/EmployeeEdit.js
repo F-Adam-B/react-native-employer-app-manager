@@ -34,7 +34,6 @@ class EmployeeEdit extends Component {
 	}
 
 	onDecline() {
-		console.log('decline');
 		this.setState({ showModal: false });
 	}
 
