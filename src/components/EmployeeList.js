@@ -28,13 +28,11 @@ class EmployeeList extends Component {
 	}
 
 	render() {
-		// console.log('this.props: ', this.props);
 		return <ListView enableEmptySections dataSource={this.dataSource} renderRow={this.renderRow} />;
 	}
 }
 
 const mapStateToProps = state => {
-	// console.log('state: ', state);
 	const employees = _.map(state.employees, (val, uid) => {
 		return { ...val, uid };
 	});

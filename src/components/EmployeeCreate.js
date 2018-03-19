@@ -12,7 +12,6 @@ class EmployeeCreate extends Component {
 		this.props.employeeCreate({ name, phone, shift: shift || 'Monday' });
 	}
 	render() {
-		console.log(this.props.employee);
 		return (
 			<Card>
 				<EmployeeForm {...this.props} />
@@ -27,7 +26,7 @@ class EmployeeCreate extends Component {
 }
 
 const mapStateToProps = state => {
-	// console.log('state: ', state);
+	//
 	const { name, phone, shift } = state.employeeForm;
 
 	return { name, phone, shift };
