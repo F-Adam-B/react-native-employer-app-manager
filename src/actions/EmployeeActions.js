@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import {
 	CANCEL_EMPLOYEE_UPDATE,
 	EMPLOYEE_UPDATE,
@@ -15,7 +15,7 @@ export const employeeUpdate = ({ prop, value }) => {
 	};
 };
 
-export const employeeCreate = ({ name, phone, shift }) => {
+export const employeeCreate = ({ name, phone, shift, navigationProps }) => {
 	const { currentUser } = firebase.auth();
 
 	return dispatch => {
@@ -25,7 +25,7 @@ export const employeeCreate = ({ name, phone, shift }) => {
 			.push({ name, phone, shift })
 			.then(() => {
 				dispatch({ type: EMPLOYEE_CREATE });
-				Actions.pop();
+				// navigationProps.navigate('employees');
 			});
 	};
 };
@@ -42,7 +42,7 @@ export const employeesFetch = () => {
 	};
 };
 
-export const employeeSave = ({ name, phone, shift, uid }) => {
+export const employeeSave = ({ name, phone, shift, uid, navigationProps }) => {
 	const { currentUser } = firebase.auth();
 	return dispatch => {
 		firebase
@@ -50,7 +50,8 @@ export const employeeSave = ({ name, phone, shift, uid }) => {
 			.ref(`/users/${currentUser.uid}/employees/${uid}`)
 			.set({ name, phone, shift })
 			.then(() => {
-				Actions.main({ type: 'reset' });
+				dispatch({ type: EMPLOYEE_SAVE_SUCCESS });
+				// navigationProps.goBack();
 			});
 	};
 };
@@ -70,7 +71,7 @@ export const employeeDelete = ({ uid }) => {
 			.remove()
 			.then(() => {
 				dispatch({ type: CANCEL_EMPLOYEE_UPDATE });
-				Actions.main({ type: 'reset' });
+				// navigationProps.goBack();
 			});
 	};
 };

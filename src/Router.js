@@ -1,41 +1,33 @@
 import React from 'react';
 import { Router, Scene, Actions } from 'react-native-router-flux';
-import { Platform, StyleSheet } from 'react-native';
+
+import { StackNavigator } from 'react-navigation';
 import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
+import Dashboard from './components/common/Dashboard';
 
-const RouterComponent = () => {
-	return (
-		<Router navigationBarStyle={styles.routerStyleHeader}>
-			<Scene key="root" hideNavBar>
-				<Scene key="auth">
-					<Scene key="login" component={LoginForm} title="Please Login" initial />
-				</Scene>
-				<Scene key="main">
-					<Scene
-						key="employeeList"
-						component={EmployeeList}
-						title="Employees"
-						rightTitle=" Add"
-						onRight={() => Actions.employeeCreate()}
-						initial
-					/>
-					<Scene key="employeeCreate" title="Create Employee" component={EmployeeCreate} />
-					<Scene key="employeeEdit" title="Edit Employee" component={EmployeeEdit} />
-				</Scene>
-			</Scene>
-		</Router>
-	);
-};
-
-const styles = StyleSheet.create({
-	routerStyleHeader: {
-		...Platform.select({
-			android: { justifyContent: 'center' },
-		}),
-	},
+const RouterComponent = StackNavigator({
+	dashboard: { screen: Dashboard },
+	login: { screen: LoginForm },
+	employees: { screen: EmployeeList },
+	employeeCreate: { screen: EmployeeCreate },
+	employeeEdit: { screen: EmployeeEdit },
 });
+
+// const { routerStyleHeader, textColor } = styles;
+
+// const styles = StyleSheet.create({
+// 	routerStyleHeader: {
+// 		justifyContent: 'center',
+// 		backgroundColor: 'green',
+// 		height: 150,
+// 	},
+// 	textColor: {
+// 		color: 'white',
+// 		paddingLeft: 100,
+// 	},
+// });
 
 export default RouterComponent;

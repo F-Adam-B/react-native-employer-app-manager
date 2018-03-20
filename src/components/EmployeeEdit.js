@@ -8,7 +8,12 @@ import { employeeUpdate, employeeSave, employeeDelete } from '../actions/Employe
 import { Card, CardSection, Button, Confirm } from './common';
 
 class EmployeeEdit extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		title: 'Edit of Employee !',
+	});
+
 	state = { showModal: false };
+
 	componentWillMount() {
 		// using lodash to iterate over all the property of the selected employee
 		_.each(this.props.employee, (value, prop) => {

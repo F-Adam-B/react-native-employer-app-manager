@@ -5,6 +5,10 @@ import { Card, CardSection, Input, Button, Spinner } from './common';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class LoginForm extends Component {
+	static navigationOption = {
+		title: 'Login',
+	};
+
 	onEmailChange(text) {
 		this.props.emailChanged(text);
 	}
@@ -15,8 +19,8 @@ class LoginForm extends Component {
 
 	onButtonPress() {
 		const { email, password } = this.props;
-
-		this.props.loginUser({ email, password });
+		const navigationProps = this.props.navigation;
+		this.props.loginUser({ email, password, navigationProps });
 	}
 
 	renderError() {
@@ -41,6 +45,7 @@ class LoginForm extends Component {
 	}
 
 	render() {
+		const { navigate } = this.props.navigation;
 		return (
 			<Card>
 				<CardSection>
