@@ -25,7 +25,7 @@ export const employeeCreate = ({ name, phone, shift, navigationProps }) => {
 			.push({ name, phone, shift })
 			.then(() => {
 				dispatch({ type: EMPLOYEE_CREATE });
-				// navigationProps.navigate('employees');
+				navigationProps.navigate('employees');
 			});
 	};
 };
@@ -51,7 +51,7 @@ export const employeeSave = ({ name, phone, shift, uid, navigationProps }) => {
 			.set({ name, phone, shift })
 			.then(() => {
 				dispatch({ type: EMPLOYEE_SAVE_SUCCESS });
-				// navigationProps.goBack();
+				navigationProps.goBack();
 			});
 	};
 };
@@ -71,7 +71,7 @@ export const employeeDelete = ({ uid }) => {
 			.remove()
 			.then(() => {
 				dispatch({ type: CANCEL_EMPLOYEE_UPDATE });
-				// navigationProps.goBack();
+				// navigationProps.navigate('employees');
 			});
 	};
 };

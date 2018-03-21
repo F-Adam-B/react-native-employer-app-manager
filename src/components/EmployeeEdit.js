@@ -16,14 +16,24 @@ class EmployeeEdit extends Component {
 
 	componentWillMount() {
 		// using lodash to iterate over all the property of the selected employee
-		_.each(this.props.employee, (value, prop) => {
+		const employee = this.props.navigation.state.params.employee;
+
+		_.each(employee, (value, prop) => {
 			this.props.employeeUpdate({ prop, value });
 		});
 	}
 
 	onButtonPress() {
-		const { name, phone, shift } = this.props;
-		this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid });
+		const { name, phone, shift, navigation } = this.props;
+		const uid = this.props.navigation.state.params.employee.uid;
+
+		this.props.employeeSave({
+			name,
+			phone,
+			shift,
+			uid,
+			navigationProps: navigation,
+		});
 	}
 
 	onTextPress() {
@@ -43,8 +53,10 @@ class EmployeeEdit extends Component {
 	}
 
 	onAccept() {
-		const { uid } = this.props.employee;
-		this.props.employeeDelete({ uid });
+		const uid = this.props.navigation.state.params.employee.uid;
+		this.props.employeeDelete({ uid, navigationProps: this.props.navigation });
+		this.setState({ showModal: false });
+		this.props.navigation.navigate('employees');
 	}
 
 	render() {

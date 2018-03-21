@@ -23,16 +23,9 @@ class EmployeeList extends Component {
 
 	componentWillMount() {
 		this.props.employeesFetch();
-		// this.createDataSource(this.props);
 	}
-	// componentWillReceiveProps(nextProps) {
-	// 	// nextProps are next set of props that component will be rendered with
-	// 	this.createDataSource(nextProps);
-	// }
 
 	goToPage(employee) {
-		console.log('go to page');
-		console.log(employee);
 		this.props.navigation.navigate('employeeEdit', { employee });
 	}
 
