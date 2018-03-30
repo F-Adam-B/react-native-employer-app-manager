@@ -8,8 +8,11 @@ import ListItem from './ListItem';
 
 class EmployeeList extends Component {
 	static navigationOptions = ({ navigation }) => ({
-		title: 'List of All Employees !',
+		title: 'Your Team',
+		headerMode: 'float',
 		headerLeft: null,
+		headerStyle: { backgroundColor: 'green' },
+		headerTintColor: 'white',
 		headerRight: (
 			<Button
 				onPress={() => {
@@ -28,18 +31,6 @@ class EmployeeList extends Component {
 	goToPage(employee) {
 		this.props.navigation.navigate('employeeEdit', { employee });
 	}
-
-	// createDataSource({ employees }) {
-	// 	const ds = new ListView.DataSource({
-	// 		rowHasChanged: (r1, r2) => r1 !== r2,
-	// 	});
-
-	// 	this.dataSource = ds.cloneWithRows(employees);
-	// }
-
-	// renderRow(employee) {
-	// 	return <ListItem employee={employee} />;
-	// }
 
 	render() {
 		return (

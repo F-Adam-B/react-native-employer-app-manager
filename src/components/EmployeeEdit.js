@@ -9,7 +9,7 @@ import { Card, CardSection, Button, Confirm } from './common';
 
 class EmployeeEdit extends Component {
 	static navigationOptions = ({ navigation }) => ({
-		title: 'Edit of Employee !',
+		title: 'Edit Team Member',
 	});
 
 	state = { showModal: false };

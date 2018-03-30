@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { View } from 'react-native';
+// import { composeWithDevTools } from 'redux-devtools-extension';
+import { createStore, applyMiddleware, compose } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import firebase from 'firebase';
 import reducers from './reducers';
 import LoginForm from './components/LoginForm';
-import thunk from 'redux-thunk';
-import Router from './Router';
+import PrimaryNav from './Router';
+// import ReduxNavigation from './ReduxNavigation';
 
 class App extends Component {
 	componentWillMount() {
@@ -21,10 +23,11 @@ class App extends Component {
 		firebase.initializeApp(config);
 	}
 	render() {
+		// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 		const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 		return (
 			<Provider store={store}>
-				<Router />
+				<PrimaryNav />
 			</Provider>
 		);
 	}

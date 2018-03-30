@@ -5,9 +5,16 @@ import { Card, CardSection, Input, Button, Spinner } from './common';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class LoginForm extends Component {
-	static navigationOption = {
-		title: 'Login',
-	};
+	static navigationOptions = ({ navigation }) => ({
+		headerStyle: { backgroundColor: 'green' },
+		headerTintColor: 'white',
+		title: 'You are not logged in',
+		headerLeft: (
+			<Text style={{ color: 'white' }} onPress={() => navigation.navigate('drawerStack')}>
+				Menu
+			</Text>
+		),
+	});
 
 	onEmailChange(text) {
 		this.props.emailChanged(text);
@@ -19,6 +26,7 @@ class LoginForm extends Component {
 
 	onButtonPress() {
 		const { email, password } = this.props;
+		console.log('this.props: ', this.props);
 		const navigationProps = this.props.navigation;
 		this.props.loginUser({ email, password, navigationProps });
 	}

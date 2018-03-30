@@ -22,7 +22,10 @@ export const loginUser = ({ email, password, navigationProps }) => {
 		firebase
 			.auth()
 			.signInWithEmailAndPassword(email, password)
-			.then(user => loginUserSuccess(dispatch, user, navigationProps))
+			.then(user => {
+				console.log('user: ', user);
+				loginUserSuccess(dispatch, user, navigationProps);
+			})
 			.catch(() => {
 				firebase
 					.auth()

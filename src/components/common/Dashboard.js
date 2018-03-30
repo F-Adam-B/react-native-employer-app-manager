@@ -8,11 +8,13 @@ import { Card } from './Card';
 
 class Dashboard extends Component {
 	static navigationOptions = {
-		title: 'Simple Schedule',
+		title: 'Simply Schedule',
 	};
 	render() {
+		// console.log('this.props.navigation: ', this.props.navigation);
 		const { textStyle, viewStyle } = styles;
 		const { navigate } = this.props.navigation;
+
 		return (
 			<Card style={{ flex: 1 }}>
 				<CardSection style={styles.viewStyle}>
