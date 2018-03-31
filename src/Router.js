@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Scene, Actions } from 'react-native-router-flux';
+import { Router, Scene, Actions, Stack } from 'react-native-router-flux';
 import { Text } from 'react-native';
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
 import LoginForm from './components/LoginForm';
@@ -7,17 +7,40 @@ import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
 import Dashboard from './components/common/Dashboard';
+import Logout from './components/common/Logout';
+import { NavLogo } from './components/common/NavLogo';
 
-const DrawerStack = DrawerNavigator({
+// const EmployeeStack = StackNavigator({});
+
+// const AuthStack = StackNavigator({});
+
+// const MainStack = StackNavigator({
+
+// });
+
+const Drawer = DrawerNavigator({
 	employees: { screen: EmployeeList },
 	employeeCreate: { screen: EmployeeCreate },
-});
-
-const PrimaryNav = StackNavigator({
-	dashboard: { screen: Dashboard },
+	logout: { screen: Logout },
 	login: { screen: LoginForm },
-	drawerStack: { screen: DrawerStack },
-	employeeEdit: { screen: EmployeeEdit },
 });
 
-export default PrimaryNav;
+export default (PrimaryNav = StackNavigator(
+	{
+		// authStack: { screen: AuthStack },
+		drawerStack: { screen: Drawer },
+		// mainStack: { screen: MainStack },
+
+		dashboard: { screen: Dashboard },
+		// employeeStack: { screen: EmployeeStack },
+	},
+	{
+		headerMode: 'screen',
+		initialRouteName: 'dashboard',
+		navigationOptions: ({ navigation }) => ({
+			headerStyle: { backgroundColor: 'green' },
+			headerTintColor: 'white',
+			headerLeft: <NavLogo onPress={() => navigation.navigate('DrawerOpen')} />,
+		}),
+	}
+));

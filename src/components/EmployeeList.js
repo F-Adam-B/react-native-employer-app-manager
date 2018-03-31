@@ -2,27 +2,35 @@ import React, { Component } from 'react';
 import { ListView, View, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from './common';
+import { NavLogo } from './common/NavLogo';
 import { employeesFetch } from '../actions/EmployeeActions';
 import _ from 'lodash';
 import ListItem from './ListItem';
 
 class EmployeeList extends Component {
-	static navigationOptions = ({ navigation }) => ({
-		title: 'Your Team',
-		headerMode: 'float',
-		headerLeft: null,
-		headerStyle: { backgroundColor: 'green' },
-		headerTintColor: 'white',
-		headerRight: (
-			<Button
-				onPress={() => {
-					navigation.navigate('employeeCreate');
-				}}
-			>
-				Add
-			</Button>
-		),
-	});
+	static navigationOptions = ({ navigation }) => {
+		return {
+			title: 'Your team',
+			// headerLeft: (
+			// 	<NavLogo
+			// 		onPress={() => {
+			// 			navigation.navigate('mainStack');
+			// 		}}
+			// 	/>
+			// ),
+			headerRight: (
+				<Button
+					onPress={() => {
+						navigation.navigate('employeeCreate');
+					}}
+					title="Add"
+					color="white"
+				>
+					Add
+				</Button>
+			),
+		};
+	};
 
 	componentWillMount() {
 		this.props.employeesFetch();

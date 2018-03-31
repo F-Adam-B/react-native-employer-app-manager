@@ -8,6 +8,7 @@ import firebase from 'firebase';
 import reducers from './reducers';
 import LoginForm from './components/LoginForm';
 import PrimaryNav from './Router';
+
 // import ReduxNavigation from './ReduxNavigation';
 
 class App extends Component {

@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { View, Text, Image, TouchableHighlight } from 'react-native';
+import { Card, CardSection, Input, Button, Spinner, Header } from './common';
+import { NavLogo } from './common/NavLogo';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class LoginForm extends Component {
-	static navigationOptions = ({ navigation }) => ({
-		headerStyle: { backgroundColor: 'green' },
-		headerTintColor: 'white',
-		title: 'You are not logged in',
-		headerLeft: (
-			<Text style={{ color: 'white' }} onPress={() => navigation.navigate('drawerStack')}>
-				Menu
-			</Text>
-		),
-	});
+	static navigationOptions = ({ navigation }) => {
+		return {
+			title: 'Loginnnnnnnn',
+			// headerLeft: (
+			// 	<NavLogo
+			// 		onPress={() => {
+			// 			navigation.navigate('drawerStack');
+			// 		}}
+			// 	/>
+			// ),
+		};
+	};
 
 	onEmailChange(text) {
 		this.props.emailChanged(text);
