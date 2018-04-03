@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-nati
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { range } from 'lodash';
-import { NavLogo } from './common';
+import { NavLogo, CalendarButton } from './common';
 
 export default class Calendar extends Component {
 	static navigationOptions = () => {
@@ -14,17 +14,64 @@ export default class Calendar extends Component {
 	};
 
 	renderWeekdays() {
-		const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sundar'];
+		const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 		return weekdays.map(day => {
 			return (
-				// <View>
 				<Text key={day} style={styles.calendar_weekdays_text}>
 					{day.toUpperCase()}
 				</Text>
-				// </View>
 			);
 		});
 	}
+
+	renderWeeks() {
+		let past_month_days = range(27, 31);
+		let this_month_days = range(1, 30);
+
+		let days = past_month_days.concat(past_month_days, this_month_days);
+		let grouped_days = this.getWeeksArray(days);
+
+		return grouped_days.map((week_days, index) => {
+			return (
+				<View key={index} style={styles.week_days}>
+					{this.renderDays(week_days)}
+				</View>
+			);
+		});
+	}
+
+	getWeeksArray(days) {
+		var weeks_r = [];
+		var seven_days = [];
+		var count = 0;
+		days.forEach(day => {
+			count += 1;
+			seven_days.push(day);
+			if (count == 7) {
+				weeks_r.push(seven_days);
+				count = 0;
+				seven_days = [];
+			}
+		});
+		return weeks_r;
+	}
+
+	renderDays(week_days) {
+		return week_days.map((day, index) => {
+			return (
+				<CalendarButton
+					label={day}
+					key={index}
+					// onPress={this.press.bind(this)}
+					style={{ button: styles.day, label: styles.day_text }}
+					noDefaultStyles={true}
+				>
+					{day}
+				</CalendarButton>
+			);
+		});
+	}
+
 	render() {
 		return (
 			<ScrollView style={styles.container}>
@@ -79,7 +126,7 @@ export default class Calendar extends Component {
 					</View>
 				</View>
 				<View style={styles.calendar_weekdays}>{this.renderWeekdays()}</View>
-				{/* <View style={styles.calendar_days}>...</View> */}
+				<View style={styles.calendar_days}>{this.renderWeeks()}</View>
 			</ScrollView>
 		);
 	}
@@ -129,9 +176,27 @@ const styles = {
 		fontWeight: 'bold',
 		fontSize: 20,
 	},
+	calendar_weekdays: {
+		flex: 1,
+		flexDirection: 'row',
+	},
 	calendar_weekdays_text: {
 		flex: 1,
 		color: '#C0C0C0',
 		textAlign: 'center',
+	},
+	week_days: {
+		flexDirection: 'row',
+	},
+	day: {
+		flex: 1,
+		backgroundColor: '#F5F5F5',
+		padding: 17,
+		margin: 2,
+	},
+	day_text: {
+		textAlign: 'center',
+		color: '#A9A9A9',
+		fontSize: 25,
 	},
 };
