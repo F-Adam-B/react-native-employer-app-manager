@@ -1,38 +1,34 @@
 import React from 'react';
 import { Router, Scene, Actions, Stack } from 'react-native-router-flux';
 import { Text } from 'react-native';
-import { StackNavigator, DrawerNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation';
 import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
 import Dashboard from './components/common/Dashboard';
 import Logout from './components/common/Logout';
-import { NavLogo } from './components/common/NavLogo';
+import { Confirm, View, Button, NavLogo } from './components/common';
+import { logoutUser } from './actions';
 
-// const EmployeeStack = StackNavigator({});
-
-// const AuthStack = StackNavigator({});
-
-// const MainStack = StackNavigator({
-
-// });
+const AuthStack = DrawerNavigator({
+	login: { screen: LoginForm },
+	signup: { screen: SignupForm },
+});
 
 const Drawer = DrawerNavigator({
 	employees: { screen: EmployeeList },
 	employeeCreate: { screen: EmployeeCreate },
 	logout: { screen: Logout },
-	login: { screen: LoginForm },
 });
 
 export default (PrimaryNav = StackNavigator(
 	{
-		// authStack: { screen: AuthStack },
-		drawerStack: { screen: Drawer },
-		// mainStack: { screen: MainStack },
-
 		dashboard: { screen: Dashboard },
-		// employeeStack: { screen: EmployeeStack },
+		authStack: { screen: AuthStack },
+		drawerStack: { screen: Drawer },
+		employeeEdit: { screen: EmployeeEdit },
 	},
 	{
 		headerMode: 'screen',

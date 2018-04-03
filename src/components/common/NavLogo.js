@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Image, TouchableHighlight } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 
 const NavLogo = ({ onPress }) => {
 	return (
-		<TouchableHighlight onPress={onPress}>
+		<TouchableOpacity onPress={onPress}>
 			<Image
-				source={require('../../assets/ic_menu_black_24dp.png')}
+				source={require('../../assets/ic_menu_white_24dp.png')}
 				style={{ width: 40, height: 30, marginLeft: 15 }}
 			/>
-		</TouchableHighlight>
+		</TouchableOpacity>
 	);
 };
+
 export { NavLogo };

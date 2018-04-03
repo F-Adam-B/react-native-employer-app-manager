@@ -1,6 +1,14 @@
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAILED, LOGIN_USER } from './types';
+import {
+	EMAIL_CHANGED,
+	PASSWORD_CHANGED,
+	LOGIN_USER_SUCCESS,
+	LOGIN_USER_FAILED,
+	LOGIN_USER,
+	PASSWORD_CONFIRMED,
+	PASSWORD_ERROR,
+	LOGOUT_USER,
+} from './types';
 import firebase from 'firebase';
-// import { Actions } from 'react-native-router-flux';
 
 export const emailChanged = text => {
 	return {
@@ -13,6 +21,19 @@ export const passwordChanged = text => {
 	return {
 		type: PASSWORD_CHANGED,
 		payload: text,
+	};
+};
+
+export const passwordConfirmed = text => {
+	return {
+		type: PASSWORD_CONFIRMED,
+		payload: text,
+	};
+};
+
+export const passwordError = () => {
+	return {
+		type: PASSWORD_ERROR,
 	};
 };
 
@@ -47,4 +68,13 @@ const loginUserSuccess = (dispatch, user, navigationProps) => {
 	});
 
 	navigationProps.navigate('employees');
+};
+
+export const logoutUser = ({ user, navigationProps }) => {
+	return dispatch => {
+		dispatch({ type: LOGOUT_USER });
+		firebase.auth().signOut();
+		navigationProps.navigate('login');
+		// navigationProps.navigate('dashboard');
+	};
 };

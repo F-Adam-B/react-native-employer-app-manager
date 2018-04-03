@@ -6,6 +6,11 @@ import { Card, CardSection, Button } from './common';
 import { employeeCreate } from '../actions/EmployeeActions';
 
 class EmployeeCreate extends Component {
+	static navigationOptions = () => {
+		return {
+			title: 'New employee',
+		};
+	};
 	onButtonPress() {
 		const { name, phone, shift } = this.props;
 		const navigationProps = this.props.navigation;

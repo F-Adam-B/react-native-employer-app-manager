@@ -3,7 +3,7 @@ import { EMPLOYEE_UPDATE, EMPLOYEE_CREATE, EMPLOYEE_SAVE_SUCCESS, CANCEL_EMPLOYE
 const INITIAL_STATE = {
 	name: '',
 	phone: '',
-	shift: '',
+	shift: [],
 };
 
 export default (state = INITIAL_STATE, action) => {

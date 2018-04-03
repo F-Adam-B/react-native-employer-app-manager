@@ -11,15 +11,10 @@ class EmployeeList extends Component {
 	static navigationOptions = ({ navigation }) => {
 		return {
 			title: 'Your team',
-			// headerLeft: (
-			// 	<NavLogo
-			// 		onPress={() => {
-			// 			navigation.navigate('mainStack');
-			// 		}}
-			// 	/>
-			// ),
+
 			headerRight: (
 				<Button
+					style={{ height: 20 }}
 					onPress={() => {
 						navigation.navigate('employeeCreate');
 					}}

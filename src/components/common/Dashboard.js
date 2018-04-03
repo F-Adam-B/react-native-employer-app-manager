@@ -9,9 +9,10 @@ import { Card } from './Card';
 class Dashboard extends Component {
 	static navigationOptions = {
 		title: 'Simply Schedule',
+		headerLeft: null,
 	};
 	render() {
-		// console.log('this.props.navigation: ', this.props.navigation);
+		//
 		const { textStyle, viewStyle } = styles;
 		const { navigate } = this.props.navigation;
 
@@ -21,7 +22,7 @@ class Dashboard extends Component {
 					<Text style={styles.textStyle}>Quicker, simpler, scheduling</Text>
 				</CardSection>
 				<CardSection>
-					<Button title="Get Started" onPress={() => navigate('login')}>
+					<Button title="Get Started" onPress={() => navigate('signup')}>
 						<Text>Get Started</Text>
 					</Button>
 				</CardSection>
@@ -35,7 +36,7 @@ const styles = {
 		backgroundColor: 'white',
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: 395,
+		height: 525,
 		paddingTop: 15,
 		shadowColor: '#00FFFF',
 		shadowOffset: { width: 0, height: 2 },
