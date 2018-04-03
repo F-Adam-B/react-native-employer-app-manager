@@ -3,6 +3,7 @@ import { View, Text, Picker } from 'react-native';
 import { CardSection, Input } from './common';
 import { connect } from 'react-redux';
 import { employeeUpdate, employeeSaveSuccess } from '../actions/EmployeeActions';
+import Calendar from './Calendar';
 
 class EmployeeForm extends Component {
 	componentWillUnmount() {
@@ -27,6 +28,7 @@ class EmployeeForm extends Component {
 						onChangeText={value => this.props.employeeUpdate({ prop: 'phone', value })}
 					/>
 				</CardSection>
+
 				<CardSection style={{ flexDirection: 'column' }}>
 					<Text style={styles.pickerTextStyle}>Shift</Text>
 					<Picker

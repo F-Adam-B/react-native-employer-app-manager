@@ -9,12 +9,14 @@ import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
 import Dashboard from './components/common/Dashboard';
 import Logout from './components/common/Logout';
+import Calendar from './components/Calendar';
 import { Confirm, View, Button, NavLogo } from './components/common';
 import { logoutUser } from './actions';
 
 const AuthStack = DrawerNavigator({
 	login: { screen: LoginForm },
 	signup: { screen: SignupForm },
+	calendar: { screen: Calendar },
 });
 
 const Drawer = DrawerNavigator({
