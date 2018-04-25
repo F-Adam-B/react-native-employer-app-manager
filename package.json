@@ -5,12 +5,12 @@
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest",
-		"android-linux":
-			"react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
+		"android-linux": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
 	},
 	"dependencies": {
 		"firebase": "^4.11.0",
 		"lodash": "^4.17.5",
+		"nodemon": "^1.17.3",
 		"npm": "^5.8.0",
 		"react": "^16.3.0-alpha.2",
 		"react-native": "0.54.2",
